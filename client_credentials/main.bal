@@ -12,7 +12,7 @@ service / on new http:Listener(4000, host = "localhost") {
         http:Response tokenResp = check asgardeoClient->post("/t/wso2cs/oauth2/token",
                                 {
                                     grant_type: "client_credentials",
-                                    scope: "oidc"
+                                    scope: "openid"
                                 },
                                 headers={"Authorization": string `Basic ${headerValue}`},
                                 mediaType = "application/json");
