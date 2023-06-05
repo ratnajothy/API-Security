@@ -8,13 +8,14 @@ service / on new http:Listener(4000, host = "localhost") {
     // and redirect back to the redirect_uri with the authorization code
     // This authorization code is used to get the access token via this token endpoint in the client app side (via ajax maybe)
     // This access token is returned to access the scope restricted resource
-    isolated resource function get token(string code) returns json|error {
+    isolated resource function get token(string code, string code_verifier) returns json|error {
 
         http:Client asgardeoClient = check new("https://api.asgardeo.io");
         http:Response tokenResp = check asgardeoClient->post("/t/wso2cs/oauth2/token",
                                 {
                                     grant_type: "authorization_code",
                                     code: string `${code}`,
+                                    code_verifier: string `${code_verifier}`,
                                     redirect_uri: "http://localhost:3000"
                                 },
                                 headers={"Authorization": string `Basic ${headerValue}`},
