@@ -23,9 +23,8 @@ service / on new http:Listener(4000, host = "localhost") {
         return tokenResp.getJsonPayload();
     }
 
-
     // Use the access token in the header to access the scope restricted resource
-    isolated resource function get scope_restricted_resource() {
-
+    isolated resource function get scope_restricted_resource() returns json|error{
+        return {"message": "You have access to the scope restricted resource"};
     }
 }
