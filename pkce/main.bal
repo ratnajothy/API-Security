@@ -2,7 +2,7 @@ import ballerina/http;
 
 configurable string headerValue = ?;
 
-service / on new http:Listener(4000, host = "localhost") {
+service / on new http:Listener(9000) {
 
     // Once authroize request is received, redirect to the asgardeo login page, and submited credentials are authenticated by the asgardeo
     // and redirect back to the redirect_uri with the authorization code
